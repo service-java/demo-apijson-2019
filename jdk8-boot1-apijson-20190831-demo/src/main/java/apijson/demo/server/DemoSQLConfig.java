@@ -38,11 +38,11 @@ public class DemoSQLConfig extends AbstractSQLConfig {
 
 	public static final Callback SIMPLE_CALLBACK;
 
-	
+
 	static {
 		//TODO 默认模式名，改成你自己的
-		DEFAULT_SCHEMA = "sys";
-		
+		DEFAULT_SCHEMA = "apijson_demo";
+
 		//表名映射，隐藏真实表名，对安全要求很高的表可以这么做
 		TABLE_KEY_MAP.put(User.class.getSimpleName(), "apijson_user");
 		TABLE_KEY_MAP.put(Privacy.class.getSimpleName(), "apijson_privacy");
@@ -82,9 +82,11 @@ public class DemoSQLConfig extends AbstractSQLConfig {
 	public String getDBVersion() {
 		return "5.7.22"; //"8.0.11"; //TODO 改成你自己的 MySQL 或 PostgreSQL 数据库版本号 //MYSQL 8 和 7 使用的 JDBC 配置不一样
 	}
-	
+
 	@Override
 	public String getDBUri() {
+        System.out.println(getDatabase());
+
 		//TODO 改成你自己的，TiDB 默认端口为 4000
 		return DATABASE_POSTGRESQL.equalsIgnoreCase(getDatabase()) ? "jdbc:postgresql://localhost:5432/postgres" : "jdbc:mysql://localhost:3306";
 	}
@@ -94,7 +96,7 @@ public class DemoSQLConfig extends AbstractSQLConfig {
 	}
 	@Override
 	public String getDBPassword() {
-		return DATABASE_POSTGRESQL.equalsIgnoreCase(getDatabase()) ? null : "apijson"; //TODO 改成你自己的，TiDB 默认密码为空字符串 ""
+		return DATABASE_POSTGRESQL.equalsIgnoreCase(getDatabase()) ? "123456" : "123456"; //TODO 改成你自己的，TiDB 默认密码为空字符串 ""
 	}
 
 
@@ -126,11 +128,11 @@ public class DemoSQLConfig extends AbstractSQLConfig {
 
 	/**获取SQL配置
 	 * @param table
-	 * @param alias 
+	 * @param alias
 	 * @param request
-	 * @param isProcedure 
+	 * @param isProcedure
 	 * @return
-	 * @throws Exception 
+	 * @throws Exception
 	 */
 	public static SQLConfig newSQLConfig(RequestMethod method, String table, String alias, JSONObject request, List<Join> joinList, boolean isProcedure) throws Exception {
 		return newSQLConfig(method, table, alias, request, joinList, isProcedure, SIMPLE_CALLBACK);

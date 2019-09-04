@@ -122,3 +122,5 @@ __tmp
 # upload
 # uploads
 out
+
+!jdk8-boot1-apijson-20190831-demo/libs/*.jar

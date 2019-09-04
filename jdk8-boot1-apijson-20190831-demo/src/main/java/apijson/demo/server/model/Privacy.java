@@ -14,11 +14,11 @@ limitations under the License.*/
 
 package apijson.demo.server.model;
 
-import static zuo.biao.apijson.RequestRole.ADMIN;
-import static zuo.biao.apijson.RequestRole.OWNER;
-import static zuo.biao.apijson.RequestRole.UNKNOWN;
+
 
 import zuo.biao.apijson.MethodAccess;
+
+import static zuo.biao.apijson.RequestRole.*;
 
 /**
  * TODO 漏洞：如果GETS允许CONTACT，则CONTACT能看到自己的余额，tag可以不是Privacy-circle。
@@ -38,7 +38,7 @@ public class Privacy extends BaseModel {
 
 	public static final int PASSWORD_TYPE_LOGIN = 0;
 	public static final int PASSWORD_TYPE_PAY = 1;
-	
+
 	private String phone; //手机
 	private String password; //登录密码，隐藏字段
 	private String payPassword; //支付密码，隐藏字段
